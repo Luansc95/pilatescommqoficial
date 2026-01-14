@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sparkles, Send, Loader2 } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5524998368014&text=Ol%c3%a1%20Myllena,%20vim%20do%20Instagram%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20aula%20experimental";
 
-// Mock responses for when AI is not available
-const mockResponses: Record<string, string> = {
+// Fallback responses for when AI is not available
+const fallbackResponses: Record<string, string> = {
   default: `O Pilates é uma excelente opção para o seu caso! Através de exercícios específicos, trabalhamos o fortalecimento muscular profundo, melhoramos a postura e aliviamos tensões acumuladas.
 
 Na PilatescomMQ, realizamos uma avaliação inicial para entender suas necessidades específicas e criar um programa personalizado para você.`,
@@ -35,6 +37,17 @@ const AIConsultant = () => {
   const [query, setQuery] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const getFallbackResponse = (userQuery: string): string => {
+    const lowerQuery = userQuery.toLowerCase();
+    if (lowerQuery.includes("costas") || lowerQuery.includes("lombar") || lowerQuery.includes("coluna")) {
+      return fallbackResponses.costas;
+    } else if (lowerQuery.includes("postura") || lowerQuery.includes("curvatura")) {
+      return fallbackResponses.postura;
+    }
+    return fallbackResponses.default;
+  };
 
   const handleConsult = async () => {
     if (!query.trim()) return;
@@ -42,21 +55,36 @@ const AIConsultant = () => {
     setIsLoading(true);
     setResponse("");
 
-    // Simulate AI response delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const { data, error } = await supabase.functions.invoke("pilates-consultant", {
+        body: { query: query.trim() },
+      });
 
-    // Check for keywords and return appropriate response
-    const lowerQuery = query.toLowerCase();
-    let aiResponse = mockResponses.default;
+      if (error) {
+        console.error("Error calling AI:", error);
+        throw error;
+      }
 
-    if (lowerQuery.includes("costas") || lowerQuery.includes("lombar") || lowerQuery.includes("coluna")) {
-      aiResponse = mockResponses.costas;
-    } else if (lowerQuery.includes("postura") || lowerQuery.includes("curvatura")) {
-      aiResponse = mockResponses.postura;
+      if (data?.error) {
+        // Handle rate limiting or payment errors
+        if (data.error.includes("requisições")) {
+          toast({
+            title: "Aguarde um momento",
+            description: "Muitas consultas em pouco tempo. Tente novamente em alguns segundos.",
+            variant: "destructive",
+          });
+        }
+        throw new Error(data.error);
+      }
+
+      setResponse(data.response);
+    } catch (error) {
+      console.error("Falling back to mock response:", error);
+      // Use fallback response when AI is unavailable
+      setResponse(getFallbackResponse(query));
+    } finally {
+      setIsLoading(false);
     }
-
-    setResponse(aiResponse);
-    setIsLoading(false);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
