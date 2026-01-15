@@ -6,14 +6,14 @@ import { Sparkles, Send, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5524998368014&text=Ol%c3%a1%20Myllena,%20vim%20do%20Instagram%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20aula%20experimental";
+const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5524998368014&text=Ol%c3%a1%20Myllena,%20vim%20pelo%20Consultor%20Inteligente%20e%20gostaria%20de%20saber%20mais%20sobre%20a%20aula%20experimental";
 
 // Fallback responses for when AI is not available
 const fallbackResponses: Record<string, string> = {
   default: `O Pilates é uma excelente opção para o seu caso! Através de exercícios específicos, trabalhamos o fortalecimento muscular profundo, melhoramos a postura e aliviamos tensões acumuladas.
 
-Na PilatescomMQ, realizamos uma avaliação inicial para entender suas necessidades específicas e criar um programa personalizado para você.`,
-  costas: `A dor nas costas é uma das queixas mais comuns que tratamos no Pilates! O método trabalha diretamente no fortalecimento do CORE (músculos abdominais e paravertebrais), que são fundamentais para sustentar a coluna.
+No PilatescomMQ, realizamos uma avaliação inicial para entender suas necessidades específicas e criar um programa personalizado para você.`,
+  costas: `A dor nas costas é uma das queixas mais comuns que tratamos no Pilates! O método trabalha diretamente no fortalecimento (músculos abdominais e paravertebrais), que são fundamentais para sustentar a coluna.
 
 Com exercícios específicos, você vai:
 • Fortalecer a musculatura que protege a coluna
@@ -21,7 +21,7 @@ Com exercícios específicos, você vai:
 • Reduzir tensões musculares
 • Aumentar a mobilidade da coluna
 
-Na PilatescomMQ, fazemos uma avaliação postural completa para identificar exatamente onde está o problema e criar um programa personalizado para você.`,
+No PilatescomMQ, fazemos uma avaliação postural completa para identificar exatamente onde está o problema e criar um programa personalizado para você.`,
   postura: `A má postura é a raiz de muitos problemas físicos, e o Pilates é referência mundial em correção postural!
 
 No nosso estúdio, trabalhamos:
