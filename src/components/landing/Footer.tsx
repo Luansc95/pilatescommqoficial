@@ -2,7 +2,7 @@ import { Instagram, MessageCircle, Heart, MapPin } from "lucide-react";
 
 const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5524998368014&text=Ol%c3%a1%20Myllena,%20gostaria%20de%20saber%20mais%20sobre%20a%20aula%20experimental";
 const INSTAGRAM_LINK = "https://www.instagram.com/pilatescommq/";
-const GOOGLE_MAPS_LINK = "https://www.google.com/maps/search/?api=1&query=Rua+Paulo+de+Frontin+129+Loja+03+Centro+Barra+do+Pirai+RJ";
+const GOOGLE_MAPS_LINK = "https://maps.app.goo.gl/i3tpDtjL6x66Nwb1A";
 
 const Footer = () => {
   return (
