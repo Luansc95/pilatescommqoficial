@@ -11,8 +11,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {/* Logo */}
           <a href="/" className="flex items-center justify-center md:justify-start gap-1 text-2xl font-bold">
-            <span className="text-purple-dark">Pilates</span>
-            <span className="text-primary">comMQ</span>
+            <span className="text-purple-dark">Pilates</span><span className="text-primary">comMQ</span>
           </a>
 
           {/* Address */}
