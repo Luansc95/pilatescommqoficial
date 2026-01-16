@@ -112,18 +112,18 @@ const AIConsultant = () => {
 
           <Card className="border-0 shadow-soft rounded-3xl overflow-hidden">
             <CardContent className="p-6 md:p-8">
-              <div className="flex gap-4">
+              <div className="flex flex-col gap-4">
                 <Input
                   placeholder="Ex: dor nas costas, má postura, tensão no pescoço..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="flex-1 h-12 rounded-xl border-border focus:ring-primary"
+                  className="w-full h-12 rounded-xl border-border focus:ring-primary"
                 />
                 <Button
                   onClick={handleConsult}
                   disabled={isLoading || !query.trim()}
-                  className="h-12 px-6 rounded-xl"
+                  className="w-full sm:w-auto sm:self-end h-12 px-6 rounded-xl"
                 >
                   {isLoading ? (
                     <Loader2 className="w-5 h-5 animate-spin" />
