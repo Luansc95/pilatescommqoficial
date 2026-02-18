@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MapPin, Thermometer, Heart } from "lucide-react";
+import { MapPin, Heart } from "lucide-react";
 import studioEquipment from "@/assets/studio-equipment.jpg";
 
 const WHATSAPP_LINK = "https://api.whatsapp.com/send?phone=5524998368014&text=Ol%c3%a1%20Myllena,%20gostaria%20de%20saber%20mais%20sobre%20a%20aula%20experimental";
 
 const features = [
-  { icon: Thermometer, text: "Ambiente climatizado" },
   { icon: Heart, text: "Atendimento personalizado" },
   { icon: MapPin, text: "Localização privilegiada" },
 ];
