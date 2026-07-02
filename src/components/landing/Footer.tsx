@@ -61,6 +61,9 @@ const Footer = () => {
           <p className="text-xs text-muted-foreground mt-2">
             © {new Date().getFullYear()} PilatescomMQ. Todos os direitos reservados.
           </p>
+          <a href="/app/login" className="text-xs text-muted-foreground/60 hover:text-primary mt-3 inline-block">
+            Área do Studio
+          </a>
         </div>
       </div>
     </footer>
