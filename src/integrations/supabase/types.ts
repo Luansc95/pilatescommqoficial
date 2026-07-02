@@ -14,16 +14,529 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      anamneses: {
+        Row: {
+          allergies: string | null
+          created_at: string
+          diseases: string[]
+          diseases_other: string | null
+          doctor_crm: string | null
+          doctor_name: string | null
+          doctor_phone: string | null
+          doctor_specialty: string | null
+          drinks_alcohol: boolean | null
+          had_surgery: boolean | null
+          has_limitations: boolean | null
+          has_medical_recommendation: boolean | null
+          has_pain: boolean | null
+          has_prosthesis: boolean | null
+          id: string
+          is_breastfeeding: boolean | null
+          is_pregnant: boolean | null
+          medications: string | null
+          observations: string | null
+          practices_activity: boolean | null
+          smokes: boolean | null
+          student_id: string
+          updated_at: string
+          updated_by: string | null
+          uses_medication: boolean | null
+        }
+        Insert: {
+          allergies?: string | null
+          created_at?: string
+          diseases?: string[]
+          diseases_other?: string | null
+          doctor_crm?: string | null
+          doctor_name?: string | null
+          doctor_phone?: string | null
+          doctor_specialty?: string | null
+          drinks_alcohol?: boolean | null
+          had_surgery?: boolean | null
+          has_limitations?: boolean | null
+          has_medical_recommendation?: boolean | null
+          has_pain?: boolean | null
+          has_prosthesis?: boolean | null
+          id?: string
+          is_breastfeeding?: boolean | null
+          is_pregnant?: boolean | null
+          medications?: string | null
+          observations?: string | null
+          practices_activity?: boolean | null
+          smokes?: boolean | null
+          student_id: string
+          updated_at?: string
+          updated_by?: string | null
+          uses_medication?: boolean | null
+        }
+        Update: {
+          allergies?: string | null
+          created_at?: string
+          diseases?: string[]
+          diseases_other?: string | null
+          doctor_crm?: string | null
+          doctor_name?: string | null
+          doctor_phone?: string | null
+          doctor_specialty?: string | null
+          drinks_alcohol?: boolean | null
+          had_surgery?: boolean | null
+          has_limitations?: boolean | null
+          has_medical_recommendation?: boolean | null
+          has_pain?: boolean | null
+          has_prosthesis?: boolean | null
+          id?: string
+          is_breastfeeding?: boolean | null
+          is_pregnant?: boolean | null
+          medications?: string | null
+          observations?: string | null
+          practices_activity?: boolean | null
+          smokes?: boolean | null
+          student_id?: string
+          updated_at?: string
+          updated_by?: string | null
+          uses_medication?: boolean | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "anamneses_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: true
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      evolution_attachments: {
+        Row: {
+          created_at: string
+          evolution_id: string
+          file_name: string
+          file_path: string
+          file_size: number | null
+          file_type: string | null
+          id: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          evolution_id: string
+          file_name: string
+          file_path: string
+          file_size?: number | null
+          file_type?: string | null
+          id?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          evolution_id?: string
+          file_name?: string
+          file_path?: string
+          file_size?: number | null
+          file_type?: string | null
+          id?: string
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "evolution_attachments_evolution_id_fkey"
+            columns: ["evolution_id"]
+            isOneToOne: false
+            referencedRelation: "evolutions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      evolutions: {
+        Row: {
+          created_at: string
+          description: string | null
+          evolution_date: string
+          id: string
+          objectives: string | null
+          observations: string | null
+          professor_id: string | null
+          recommended_exercises: string | null
+          student_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          evolution_date?: string
+          id?: string
+          objectives?: string | null
+          observations?: string | null
+          professor_id?: string | null
+          recommended_exercises?: string | null
+          student_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          evolution_date?: string
+          id?: string
+          objectives?: string | null
+          observations?: string | null
+          professor_id?: string | null
+          recommended_exercises?: string | null
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "evolutions_professor_id_fkey"
+            columns: ["professor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "evolutions_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      physical_assessments: {
+        Row: {
+          assessed_at: string
+          assessor_id: string | null
+          balance: number | null
+          blood_pressure: string | null
+          body_fat_pct: number | null
+          circ_abdomen: number | null
+          circ_arm: number | null
+          circ_calf: number | null
+          circ_hip: number | null
+          circ_thigh: number | null
+          circ_waist: number | null
+          created_at: string
+          endurance: number | null
+          flexibility: number | null
+          heart_rate: number | null
+          height: number | null
+          id: string
+          imc: number | null
+          mobility_ankles: number | null
+          mobility_hip: number | null
+          mobility_knees: number | null
+          mobility_shoulders: number | null
+          mobility_spine: number | null
+          pain_notes: string | null
+          postural_checklist: Json
+          postural_notes: string | null
+          strength: number | null
+          student_id: string
+          updated_at: string
+          updated_by: string | null
+          weight: number | null
+        }
+        Insert: {
+          assessed_at?: string
+          assessor_id?: string | null
+          balance?: number | null
+          blood_pressure?: string | null
+          body_fat_pct?: number | null
+          circ_abdomen?: number | null
+          circ_arm?: number | null
+          circ_calf?: number | null
+          circ_hip?: number | null
+          circ_thigh?: number | null
+          circ_waist?: number | null
+          created_at?: string
+          endurance?: number | null
+          flexibility?: number | null
+          heart_rate?: number | null
+          height?: number | null
+          id?: string
+          imc?: number | null
+          mobility_ankles?: number | null
+          mobility_hip?: number | null
+          mobility_knees?: number | null
+          mobility_shoulders?: number | null
+          mobility_spine?: number | null
+          pain_notes?: string | null
+          postural_checklist?: Json
+          postural_notes?: string | null
+          strength?: number | null
+          student_id: string
+          updated_at?: string
+          updated_by?: string | null
+          weight?: number | null
+        }
+        Update: {
+          assessed_at?: string
+          assessor_id?: string | null
+          balance?: number | null
+          blood_pressure?: string | null
+          body_fat_pct?: number | null
+          circ_abdomen?: number | null
+          circ_arm?: number | null
+          circ_calf?: number | null
+          circ_hip?: number | null
+          circ_thigh?: number | null
+          circ_waist?: number | null
+          created_at?: string
+          endurance?: number | null
+          flexibility?: number | null
+          heart_rate?: number | null
+          height?: number | null
+          id?: string
+          imc?: number | null
+          mobility_ankles?: number | null
+          mobility_hip?: number | null
+          mobility_knees?: number | null
+          mobility_shoulders?: number | null
+          mobility_spine?: number | null
+          pain_notes?: string | null
+          postural_checklist?: Json
+          postural_notes?: string | null
+          strength?: number | null
+          student_id?: string
+          updated_at?: string
+          updated_by?: string | null
+          weight?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "physical_assessments_assessor_id_fkey"
+            columns: ["assessor_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "physical_assessments_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      students: {
+        Row: {
+          address: string | null
+          birth_date: string | null
+          city: string | null
+          company: string | null
+          cpf: string | null
+          created_at: string
+          created_by: string | null
+          email: string | null
+          emergency_name: string | null
+          emergency_notes: string | null
+          emergency_phone: string | null
+          emergency_relationship: string | null
+          enrollment_date: string | null
+          full_name: string
+          gender: string | null
+          id: string
+          marital_status: string | null
+          neighborhood: string | null
+          objectives: string[]
+          objectives_other: string | null
+          phone: string | null
+          photo_url: string | null
+          plan: string | null
+          profession: string | null
+          responsible_teacher_id: string | null
+          rg: string | null
+          schedule: string | null
+          state: string | null
+          status: Database["public"]["Enums"]["student_status"]
+          updated_at: string
+          updated_by: string | null
+          weekly_classes: number | null
+          whatsapp: string | null
+          zip_code: string | null
+        }
+        Insert: {
+          address?: string | null
+          birth_date?: string | null
+          city?: string | null
+          company?: string | null
+          cpf?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          emergency_name?: string | null
+          emergency_notes?: string | null
+          emergency_phone?: string | null
+          emergency_relationship?: string | null
+          enrollment_date?: string | null
+          full_name: string
+          gender?: string | null
+          id?: string
+          marital_status?: string | null
+          neighborhood?: string | null
+          objectives?: string[]
+          objectives_other?: string | null
+          phone?: string | null
+          photo_url?: string | null
+          plan?: string | null
+          profession?: string | null
+          responsible_teacher_id?: string | null
+          rg?: string | null
+          schedule?: string | null
+          state?: string | null
+          status?: Database["public"]["Enums"]["student_status"]
+          updated_at?: string
+          updated_by?: string | null
+          weekly_classes?: number | null
+          whatsapp?: string | null
+          zip_code?: string | null
+        }
+        Update: {
+          address?: string | null
+          birth_date?: string | null
+          city?: string | null
+          company?: string | null
+          cpf?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          emergency_name?: string | null
+          emergency_notes?: string | null
+          emergency_phone?: string | null
+          emergency_relationship?: string | null
+          enrollment_date?: string | null
+          full_name?: string
+          gender?: string | null
+          id?: string
+          marital_status?: string | null
+          neighborhood?: string | null
+          objectives?: string[]
+          objectives_other?: string | null
+          phone?: string | null
+          photo_url?: string | null
+          plan?: string | null
+          profession?: string | null
+          responsible_teacher_id?: string | null
+          rg?: string | null
+          schedule?: string | null
+          state?: string | null
+          status?: Database["public"]["Enums"]["student_status"]
+          updated_at?: string
+          updated_by?: string | null
+          weekly_classes?: number | null
+          whatsapp?: string | null
+          zip_code?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "students_responsible_teacher_id_fkey"
+            columns: ["responsible_teacher_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      terms_acceptances: {
+        Row: {
+          accepted_at: string | null
+          created_at: string
+          id: string
+          lgpd_accepted: boolean
+          risks_accepted: boolean
+          student_id: string
+          truth_accepted: boolean
+          updated_at: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          created_at?: string
+          id?: string
+          lgpd_accepted?: boolean
+          risks_accepted?: boolean
+          student_id: string
+          truth_accepted?: boolean
+          updated_at?: string
+        }
+        Update: {
+          accepted_at?: string | null
+          created_at?: string
+          id?: string
+          lgpd_accepted?: boolean
+          risks_accepted?: boolean
+          student_id?: string
+          truth_accepted?: boolean
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "terms_acceptances_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: true
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "professor"
+      student_status: "ativo" | "pausado" | "encerrado" | "lista_espera"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +663,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "professor"],
+      student_status: ["ativo", "pausado", "encerrado", "lista_espera"],
+    },
   },
 } as const
