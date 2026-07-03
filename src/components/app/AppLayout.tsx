@@ -1,37 +1,38 @@
-import { ReactNode } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { ReactNode, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { LogOut, Users, UserCog, LayoutDashboard, Menu, X } from "lucide-react";
-import { useState } from "react";
+import {
+  LogOut, Users, UserCog, Menu, BookOpen, Dumbbell, ClipboardList, CalendarDays, ChevronDown, ChevronRight,
+} from "lucide-react";
 import logoMQ from "@/assets/logo-mq.png";
 
 export function AppLayout({ children }: { children: ReactNode }) {
   const { profile, isAdmin, signOut } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const aulasActive = location.pathname.startsWith("/app/aulas");
+  const [aulasOpen, setAulasOpen] = useState(aulasActive);
 
   const handleSignOut = async () => {
     await signOut();
     navigate("/app/login");
   };
 
-  const navItems = [
-    { to: "/app", label: "Alunos", icon: Users, end: true },
-    ...(isAdmin ? [{ to: "/app/equipe", label: "Equipe", icon: UserCog, end: false }] : []),
+  const aulasSub = [
+    { to: "/app/aulas/agenda", label: "Agenda", icon: CalendarDays },
+    { to: "/app/aulas/aulas", label: "Aulas", icon: ClipboardList },
+    { to: "/app/aulas/planos", label: "Planos de Aula", icon: BookOpen },
+    { to: "/app/aulas/exercicios", label: "Exercícios", icon: Dumbbell },
   ];
 
   return (
     <div className="min-h-screen bg-secondary/30 flex">
-      {/* Mobile overlay */}
       {sidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-30 lg:hidden"
-          onClick={() => setSidebarOpen(false)}
-        />
+        <div className="fixed inset-0 bg-black/50 z-30 lg:hidden" onClick={() => setSidebarOpen(false)} />
       )}
 
-      {/* Sidebar */}
       <aside
         className={`fixed lg:sticky top-0 h-screen w-64 bg-background border-r border-border z-40 transition-transform duration-300 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
@@ -45,25 +46,66 @@ export function AppLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
 
-        <nav className="flex-1 p-4 space-y-1">
-          {navItems.map((item) => (
+        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
+          <NavLink
+            to="/app"
+            end
+            onClick={() => setSidebarOpen(false)}
+            className={({ isActive }) =>
+              `flex items-center gap-3 px-4 py-2.5 rounded-xl transition-colors ${
+                isActive ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-secondary"
+              }`
+            }
+          >
+            <Users className="w-5 h-5" />
+            <span className="font-medium">Alunos</span>
+          </NavLink>
+
+          <button
+            type="button"
+            onClick={() => setAulasOpen((v) => !v)}
+            className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl transition-colors ${
+              aulasActive ? "bg-primary/10 text-primary" : "text-foreground hover:bg-secondary"
+            }`}
+          >
+            <BookOpen className="w-5 h-5" />
+            <span className="font-medium flex-1 text-left">Aulas</span>
+            {aulasOpen ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
+          </button>
+          {aulasOpen && (
+            <div className="ml-3 pl-3 border-l border-border space-y-1">
+              {aulasSub.map((s) => (
+                <NavLink
+                  key={s.to}
+                  to={s.to}
+                  onClick={() => setSidebarOpen(false)}
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors ${
+                      isActive ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-secondary"
+                    }`
+                  }
+                >
+                  <s.icon className="w-4 h-4" />
+                  {s.label}
+                </NavLink>
+              ))}
+            </div>
+          )}
+
+          {isAdmin && (
             <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.end}
+              to="/app/equipe"
               onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-2.5 rounded-xl transition-colors ${
-                  isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "text-foreground hover:bg-secondary"
+                  isActive ? "bg-primary text-primary-foreground" : "text-foreground hover:bg-secondary"
                 }`
               }
             >
-              <item.icon className="w-5 h-5" />
-              <span className="font-medium">{item.label}</span>
+              <UserCog className="w-5 h-5" />
+              <span className="font-medium">Equipe</span>
             </NavLink>
-          ))}
+          )}
         </nav>
 
         <div className="p-4 border-t border-border space-y-3">
@@ -83,6 +125,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
           </Link>
         </div>
       </aside>
+
 
       {/* Main */}
       <div className="flex-1 min-w-0 flex flex-col">
