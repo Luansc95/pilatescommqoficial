@@ -59,3 +59,72 @@ export const STUDIO_INFO = {
   city: "Barra do Piraí - RJ",
   phone: "(24) 99836-8014",
 };
+
+// ============ AULAS ============
+export const EXERCISE_CATEGORIES = [
+  "Aquecimento",
+  "Mobilidade",
+  "Alongamento",
+  "Fortalecimento",
+  "Equilíbrio",
+  "Coordenação",
+  "Relaxamento",
+  "Cardio",
+  "Core",
+  "Postura",
+] as const;
+
+export const MUSCLE_GROUPS = [
+  "Membros superiores",
+  "Membros inferiores",
+  "Core / Abdômen",
+  "Coluna / Dorsal",
+  "Glúteos",
+  "Peitoral",
+  "Corpo inteiro",
+] as const;
+
+export const EQUIPMENT_OPTIONS = [
+  "Solo / Mat",
+  "Reformer",
+  "Cadillac",
+  "Chair",
+  "Barrel",
+  "Ladder Barrel",
+  "Wall Unit",
+  "Magic Circle",
+  "Bola Suíça",
+  "Bosu",
+  "Faixa Elástica",
+  "Halteres",
+  "TRX",
+  "Rolo",
+] as const;
+
+export const LEVEL_OPTIONS = ["Iniciante", "Intermediário", "Avançado"] as const;
+
+export const INTENSITY_OPTIONS = ["Leve", "Moderada", "Intensa"] as const;
+
+export const LESSON_BLOCKS = [
+  { key: "aquecimento", label: "Aquecimento" },
+  { key: "mobilidade", label: "Mobilidade" },
+  { key: "alongamento", label: "Alongamento" },
+  { key: "fortalecimento", label: "Fortalecimento" },
+  { key: "equilibrio", label: "Equilíbrio" },
+  { key: "coordenacao", label: "Coordenação" },
+  { key: "relaxamento", label: "Relaxamento" },
+] as const;
+
+export const LESSON_STATUS_LABELS: Record<string, string> = {
+  agendada: "Agendada",
+  realizada: "Realizada",
+  faltou: "Faltou",
+  cancelada: "Cancelada",
+};
+
+export const LESSON_STATUS_COLORS: Record<string, string> = {
+  agendada: "bg-blue-100 text-blue-800 border-blue-200",
+  realizada: "bg-green-100 text-green-800 border-green-200",
+  faltou: "bg-orange-100 text-orange-800 border-orange-200",
+  cancelada: "bg-gray-100 text-gray-800 border-gray-200",
+};
