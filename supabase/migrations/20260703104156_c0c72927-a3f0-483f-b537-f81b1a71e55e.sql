@@ -1,0 +1,1 @@
+REVOKE EXECUTE ON FUNCTION public.on_lesson_completed() FROM PUBLIC, anon, authenticated;

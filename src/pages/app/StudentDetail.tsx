@@ -12,6 +12,7 @@ import AnamneseTab from "@/components/app/studentTabs/AnamneseTab";
 import AvaliacaoTab from "@/components/app/studentTabs/AvaliacaoTab";
 import EvolucaoTab from "@/components/app/studentTabs/EvolucaoTab";
 import PdfTab from "@/components/app/studentTabs/PdfTab";
+import AulasTab from "@/components/app/studentTabs/AulasTab";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "@/hooks/use-toast";
 import { formatDateTime } from "@/lib/appHelpers";
@@ -100,12 +101,13 @@ export default function StudentDetail() {
       <Card className="rounded-3xl border-0 shadow-soft">
         <CardContent className="p-4 md:p-6">
           <Tabs defaultValue="dados" className="w-full">
-            <TabsList className="grid grid-cols-3 md:grid-cols-6 h-auto mb-6">
+            <TabsList className="grid grid-cols-4 md:grid-cols-7 h-auto mb-6">
               <TabsTrigger value="dados" className="text-xs md:text-sm">Dados</TabsTrigger>
               <TabsTrigger value="objetivos" className="text-xs md:text-sm">Objetivos</TabsTrigger>
               <TabsTrigger value="anamnese" className="text-xs md:text-sm">Anamnese</TabsTrigger>
               <TabsTrigger value="avaliacao" className="text-xs md:text-sm">Avaliação</TabsTrigger>
               <TabsTrigger value="evolucao" className="text-xs md:text-sm">Evolução</TabsTrigger>
+              <TabsTrigger value="aulas" className="text-xs md:text-sm">Aulas</TabsTrigger>
               <TabsTrigger value="pdf" className="text-xs md:text-sm">PDF</TabsTrigger>
             </TabsList>
 
@@ -123,6 +125,9 @@ export default function StudentDetail() {
             </TabsContent>
             <TabsContent value="evolucao">
               <EvolucaoTab studentId={student.id} />
+            </TabsContent>
+            <TabsContent value="aulas">
+              <AulasTab studentId={student.id} />
             </TabsContent>
             <TabsContent value="pdf">
               <PdfTab studentId={student.id} />

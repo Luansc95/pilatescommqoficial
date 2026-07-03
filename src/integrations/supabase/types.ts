@@ -198,6 +198,318 @@ export type Database = {
           },
         ]
       }
+      exercises: {
+        Row: {
+          archived_at: string | null
+          benefits: string | null
+          category: string | null
+          cautions: string | null
+          code: string | null
+          contraindications: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          duration_min: number | null
+          equipment: string | null
+          id: string
+          level: string | null
+          muscle_group: string | null
+          name: string
+          objective: string | null
+          photo_url: string | null
+          reps: number | null
+          rest_seconds: number | null
+          sets: number | null
+          tags: string[] | null
+          tips: string | null
+          updated_at: string
+          video_url: string | null
+        }
+        Insert: {
+          archived_at?: string | null
+          benefits?: string | null
+          category?: string | null
+          cautions?: string | null
+          code?: string | null
+          contraindications?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          duration_min?: number | null
+          equipment?: string | null
+          id?: string
+          level?: string | null
+          muscle_group?: string | null
+          name: string
+          objective?: string | null
+          photo_url?: string | null
+          reps?: number | null
+          rest_seconds?: number | null
+          sets?: number | null
+          tags?: string[] | null
+          tips?: string | null
+          updated_at?: string
+          video_url?: string | null
+        }
+        Update: {
+          archived_at?: string | null
+          benefits?: string | null
+          category?: string | null
+          cautions?: string | null
+          code?: string | null
+          contraindications?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          duration_min?: number | null
+          equipment?: string | null
+          id?: string
+          level?: string | null
+          muscle_group?: string | null
+          name?: string
+          objective?: string | null
+          photo_url?: string | null
+          reps?: number | null
+          rest_seconds?: number | null
+          sets?: number | null
+          tags?: string[] | null
+          tips?: string | null
+          updated_at?: string
+          video_url?: string | null
+        }
+        Relationships: []
+      }
+      lesson_items: {
+        Row: {
+          block: string
+          created_at: string
+          done: boolean
+          exercise_id: string | null
+          exercise_name_snapshot: string | null
+          id: string
+          lesson_id: string
+          load: string | null
+          notes: string | null
+          position: number
+          reps: number | null
+          sets: number | null
+          time_seconds: number | null
+        }
+        Insert: {
+          block: string
+          created_at?: string
+          done?: boolean
+          exercise_id?: string | null
+          exercise_name_snapshot?: string | null
+          id?: string
+          lesson_id: string
+          load?: string | null
+          notes?: string | null
+          position?: number
+          reps?: number | null
+          sets?: number | null
+          time_seconds?: number | null
+        }
+        Update: {
+          block?: string
+          created_at?: string
+          done?: boolean
+          exercise_id?: string | null
+          exercise_name_snapshot?: string | null
+          id?: string
+          lesson_id?: string
+          load?: string | null
+          notes?: string | null
+          position?: number
+          reps?: number | null
+          sets?: number | null
+          time_seconds?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_items_exercise_id_fkey"
+            columns: ["exercise_id"]
+            isOneToOne: false
+            referencedRelation: "exercises"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lesson_items_lesson_id_fkey"
+            columns: ["lesson_id"]
+            isOneToOne: false
+            referencedRelation: "lessons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lesson_plan_items: {
+        Row: {
+          block: string
+          created_at: string
+          exercise_id: string | null
+          exercise_name_snapshot: string | null
+          id: string
+          load: string | null
+          notes: string | null
+          plan_id: string
+          position: number
+          reps: number | null
+          sets: number | null
+          time_seconds: number | null
+        }
+        Insert: {
+          block: string
+          created_at?: string
+          exercise_id?: string | null
+          exercise_name_snapshot?: string | null
+          id?: string
+          load?: string | null
+          notes?: string | null
+          plan_id: string
+          position?: number
+          reps?: number | null
+          sets?: number | null
+          time_seconds?: number | null
+        }
+        Update: {
+          block?: string
+          created_at?: string
+          exercise_id?: string | null
+          exercise_name_snapshot?: string | null
+          id?: string
+          load?: string | null
+          notes?: string | null
+          plan_id?: string
+          position?: number
+          reps?: number | null
+          sets?: number | null
+          time_seconds?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lesson_plan_items_exercise_id_fkey"
+            columns: ["exercise_id"]
+            isOneToOne: false
+            referencedRelation: "exercises"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lesson_plan_items_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "lesson_plans"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      lesson_plans: {
+        Row: {
+          archived_at: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          duration_min: number | null
+          id: string
+          level: string | null
+          name: string
+          objective: string | null
+          updated_at: string
+        }
+        Insert: {
+          archived_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          duration_min?: number | null
+          id?: string
+          level?: string | null
+          name: string
+          objective?: string | null
+          updated_at?: string
+        }
+        Update: {
+          archived_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          duration_min?: number | null
+          id?: string
+          level?: string | null
+          name?: string
+          objective?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      lessons: {
+        Row: {
+          completed_at: string | null
+          created_at: string
+          created_by: string | null
+          duration_min: number
+          id: string
+          intensity: string | null
+          notes: string | null
+          objective: string | null
+          plan_id: string | null
+          professor_id: string | null
+          scheduled_date: string
+          scheduled_time: string
+          status: string
+          student_id: string
+          updated_at: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          duration_min?: number
+          id?: string
+          intensity?: string | null
+          notes?: string | null
+          objective?: string | null
+          plan_id?: string | null
+          professor_id?: string | null
+          scheduled_date: string
+          scheduled_time: string
+          status?: string
+          student_id: string
+          updated_at?: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string
+          created_by?: string | null
+          duration_min?: number
+          id?: string
+          intensity?: string | null
+          notes?: string | null
+          objective?: string | null
+          plan_id?: string | null
+          professor_id?: string | null
+          scheduled_date?: string
+          scheduled_time?: string
+          status?: string
+          student_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "lessons_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "lesson_plans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "lessons_student_id_fkey"
+            columns: ["student_id"]
+            isOneToOne: false
+            referencedRelation: "students"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       physical_assessments: {
         Row: {
           assessed_at: string
