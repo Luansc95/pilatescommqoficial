@@ -12,6 +12,7 @@ import AnamneseTab from "@/components/app/studentTabs/AnamneseTab";
 import AvaliacaoTab from "@/components/app/studentTabs/AvaliacaoTab";
 import EvolucaoTab from "@/components/app/studentTabs/EvolucaoTab";
 import PdfTab from "@/components/app/studentTabs/PdfTab";
+import AulasTab from "@/components/app/studentTabs/AulasTab";
 import { useAuth } from "@/hooks/useAuth";
 import { toast } from "@/hooks/use-toast";
 import { formatDateTime } from "@/lib/appHelpers";
